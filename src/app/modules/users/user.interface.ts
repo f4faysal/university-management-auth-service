@@ -1,3 +1,5 @@
+import { Model } from 'mongoose'
+
 export type IUser = {
   id: string
   role: string
@@ -6,3 +8,5 @@ export type IUser = {
   // updatedAt :
   // studentId :
 }
+
+export type UserModel = Model<IUser, Record<string, unknown>>

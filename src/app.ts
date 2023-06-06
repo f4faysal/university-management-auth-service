@@ -1,6 +1,8 @@
 import cors from 'cors'
-import express, { Application, Request, Response } from 'express'
-import userRouter from './app/modules/users/users.route'
+import express, { Application } from 'express'
+import { UserRoutes } from './app/modules/users/user.route'
+import golobalErrorHandlar from './middlewares/golobalErrorHandler'
+
 const app: Application = express()
 
 app.use(cors())
@@ -11,11 +13,15 @@ app.use(express.urlencoded({ extended: true }))
 
 // Appliction routs
 
-app.use('/api/v1/users', userRouter)
+app.use('/api/v1/users', UserRoutes)
 
 // testing
-app.get('/', async (req: Request, res: Response) => {
-  res.send('University Management server Working SuccessFully ')
-})
+
+// app.get('/', (req: Request, res: Response, next: NextFunction) => {
+//   throw new ApiError(400, 'Ore baba error')
+//   //   next('ore baba error')
+// })
+
+app.use(golobalErrorHandlar)
 
 export default app

@@ -1,0 +1,4 @@
+Fri Jun 02 2023 18:26:20 [FU] error: bad auth : Authentication failed.
+Fri Jun 02 2023 18:28:25 [FU] error: bad auth : Authentication failed.
+Fri Jun 02 2023 18:30:41 [FU] error: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+Fri Jun 02 2023 18:31:10 [FU] error: The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
