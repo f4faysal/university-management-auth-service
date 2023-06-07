@@ -25,3 +25,9 @@ export const academicSemesterTitel: IAcademicSemesterTitle[] = [
   'Summer',
   'Fall',
 ];
+
+export const academicSemesterTitelCodeMapper: { [key: string]: string } = {
+  Autumn: '01',
+  Summer: '02',
+  Fall: '03',
+};
