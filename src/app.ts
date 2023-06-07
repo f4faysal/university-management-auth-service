@@ -1,19 +1,21 @@
-import cors from 'cors'
-import express, { Application } from 'express'
-import { UserRoutes } from './app/modules/users/user.route'
-import golobalErrorHandlar from './middlewares/golobalErrorHandler'
+import cors from 'cors';
+import express, { Application } from 'express';
+import golobalErrorHandlar from './app/middlewares/golobalErrorHandler';
+import { SemesterRoutes } from './app/modules/academicSemester/academicSemester.route';
+import { UserRoutes } from './app/modules/user/user.route';
 
-const app: Application = express()
+const app: Application = express();
 
-app.use(cors())
+app.use(cors());
 
 // parser
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Appliction routs
 
-app.use('/api/v1/users', UserRoutes)
+app.use('/api/v1/users', UserRoutes);
+app.use('/api/v1/academic-semester', SemesterRoutes);
 
 // testing
 
@@ -22,6 +24,6 @@ app.use('/api/v1/users', UserRoutes)
 //   //   next('ore baba error')
 // })
 
-app.use(golobalErrorHandlar)
+app.use(golobalErrorHandlar);
 
-export default app
+export default app;

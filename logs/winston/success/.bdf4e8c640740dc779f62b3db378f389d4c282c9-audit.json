@@ -69,6 +69,31 @@
             "date": 1686038499445,
             "name": "D:\\project-next-lavel\\university-management-auth-service\\logs\\winston\\success\\FU-2023-06-06-14-success.log",
             "hash": "fbb8d6f3ade4d0d3a0fbf9f53044842c6fb187407e61190602cde36c5b6dcedd"
+        },
+        {
+            "date": 1686045645909,
+            "name": "D:\\project-next-lavel\\university-management-auth-service\\logs\\winston\\success\\FU-2023-06-06-16-success.log",
+            "hash": "2dcf5ce975b63fd0a33823785dfbfac8b16c2bf29a4093157f5a37cbd512bc38"
+        },
+        {
+            "date": 1686049511256,
+            "name": "D:\\project-next-lavel\\university-management-auth-service\\logs\\winston\\success\\FU-2023-06-06-17-success.log",
+            "hash": "d69052b3f69c5ad8bfaea1c7186d77316a98ea6b81a89e6d27a3ea8d3098b843"
+        },
+        {
+            "date": 1686056650776,
+            "name": "D:\\project-next-lavel\\university-management-auth-service\\logs\\winston\\success\\FU-2023-06-06-19-success.log",
+            "hash": "50646a9966614442903e355e7511f1a66bac507c51b877055df71a25307c8ded"
+        },
+        {
+            "date": 1686082346838,
+            "name": "D:\\project-next-lavel\\university-management-auth-service\\logs\\winston\\success\\FU-2023-07-06-02-success.log",
+            "hash": "06915897dbc470eb24a5130b3dc1a92fa5f4e10d676ee1d1a947ae0f1e507dc8"
+        },
+        {
+            "date": 1686111904906,
+            "name": "D:\\project-next-lavel\\university-management-auth-service\\logs\\winston\\success\\FU-2023-07-06-10-success.log",
+            "hash": "83e58613227274386af57ac6786249b9bd4edaeb13066dee8641637545b3c74e"
         }
     ],
     "hashType": "sha256"
