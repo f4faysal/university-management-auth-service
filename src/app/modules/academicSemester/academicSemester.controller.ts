@@ -46,3 +46,4 @@ export const AcademicSemesterController = {
   createSemester,
   getAllSemesters,
 };
+// test
