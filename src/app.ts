@@ -1,5 +1,6 @@
 import cors from 'cors';
-import express, { Application } from 'express';
+import express, { Application, NextFunction, Request, Response } from 'express';
+import httpStatus from 'http-status';
 import golobalErrorHandlar from './app/middlewares/golobalErrorHandler';
 import routers from './app/routes';
 
@@ -26,5 +27,22 @@ app.use('/api/v1', routers);
 // })
 
 app.use(golobalErrorHandlar);
+
+// Handel not fount routs
+
+app.use((req: Request, res: Response, next: NextFunction) => {
+  res.status(httpStatus.NOT_FOUND).json({
+    success: false,
+    message: ' Not Found',
+    errorMessage: [
+      {
+        path: req.originalUrl,
+        errorMessage: ' API Not Found',
+      },
+    ],
+  });
+
+  next();
+});
 
 export default app;
