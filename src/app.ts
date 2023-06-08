@@ -1,8 +1,7 @@
 import cors from 'cors';
 import express, { Application } from 'express';
 import golobalErrorHandlar from './app/middlewares/golobalErrorHandler';
-import { SemesterRoutes } from './app/modules/academicSemester/academicSemester.route';
-import { UserRoutes } from './app/modules/user/user.route';
+import routers from './app/routes';
 
 const app: Application = express();
 
@@ -14,8 +13,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // Appliction routs
 
-app.use('/api/v1/users', UserRoutes);
-app.use('/api/v1/academic-semester', SemesterRoutes);
+app.use('/api/v1', routers);
+
+// app.use('/api/v1/users', UserRoutes);
+// app.use('/api/v1/academic-semester', SemesterRoutes);
 
 // testing
 
