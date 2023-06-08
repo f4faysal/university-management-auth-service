@@ -9,6 +9,11 @@
             "date": 1686250720381,
             "name": "D:\\project-next-lavel\\university-management-auth-service\\logs\\winston\\error\\FU-2023-09-06-00-error.log",
             "hash": "935711abef8c12757495fd641f841730d9292cd9dc4fb7ed249a0a0e2dac642e"
+        },
+        {
+            "date": 1686251858415,
+            "name": "D:\\project-next-lavel\\university-management-auth-service\\logs\\winston\\error\\FU-2023-09-06-01-error.log",
+            "hash": "5b5368c1437f81856ff89d18db2bc0a0faf3b21cb08c7f30518d1d4f83e92ffc"
         }
     ],
     "hashType": "sha256"
