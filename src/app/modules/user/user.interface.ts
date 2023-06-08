@@ -1,0 +1,12 @@
+import { Model } from 'mongoose';
+
+export type IUser = {
+  id: string;
+  role: string;
+  Password: string;
+  // createdAt :
+  // updatedAt :
+  // studentId :
+};
+
+export type UserModel = Model<IUser, Record<string, unknown>>;
