@@ -12,12 +12,12 @@ let server: Server;
 async function bootstap() {
   try {
     await mongoose.connect(config.database__url as string);
-    logger.info(`🛢   Database is connected successfully`);
+    logger.info(`🛫 Database is connected 🎉 successfully`);
     server = app.listen(config.port, () => {
-      logger.info(`Application  listening on port ${config.port}`);
+      logger.info(`👻 Application  listening on🪝  port ${config.port}`);
     });
   } catch (err) {
-    errorlogger.error('Failed to connect database', err);
+    errorlogger.error('🛑 Failed to connect  ☢️  Database ☣️', err);
   }
 
   process.on('unhandledRejection', error => {

@@ -11,11 +11,11 @@ import { errorlogger } from '../../share/logger';
 
 const golobalErrorHandlar: ErrorRequestHandler = (error, req, res, next) => {
   config.env === 'development'
-    ? console.log('golobalErrorHandlar~', error)
-    : errorlogger.error('golobalErrorHandlar ~', error);
+    ? console.log('🛑 ☢️ ☣️ golobalErrorHandlar~', error)
+    : errorlogger.error('🛑 ☢️ ☣️ golobalErrorHandlar ~', error);
 
   let statusCode = 500;
-  let message = 'Somthing Wen Wrong !';
+  let message = '☢️ Somthing Wen Wrong !';
   let errorMessages: IGenericErrorMessage[] = [];
 
   if (error?.name === 'ValidationError') {
