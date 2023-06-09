@@ -6,10 +6,11 @@ import config from '../../config';
 import ApiError from '../../errors/ApiError';
 import handelValidationError from '../../errors/handelValidationError';
 import handelZosError from '../../errors/handelZosError';
+import handleCastError from '../../errors/handleCastError';
 import { IGenericErrorMessage } from '../../interfaces/error';
 import { errorlogger } from '../../share/logger';
 
-const golobalErrorHandlar: ErrorRequestHandler = (error, req, res, next) => {
+const golobalErrorHandlar: ErrorRequestHandler = (error, req, res) => {
   config.env === 'development'
     ? console.log('🛑 ☢️ ☣️ golobalErrorHandlar~', error)
     : errorlogger.error('🛑 ☢️ ☣️ golobalErrorHandlar ~', error);
@@ -23,6 +24,11 @@ const golobalErrorHandlar: ErrorRequestHandler = (error, req, res, next) => {
     statusCode = simplifiedError?.statusCode;
     message = simplifiedError?.message;
     errorMessages = simplifiedError?.errorMessages;
+  } else if (error?.name === 'CastError') {
+    const simplifiedError = handleCastError(error);
+    statusCode = simplifiedError.statusCode;
+    message = simplifiedError.message;
+    errorMessages = simplifiedError.errorMessages;
   } else if (error instanceof ZodError) {
     const simplifiedError = handelZosError(error);
     statusCode = simplifiedError?.statusCode;
@@ -57,8 +63,6 @@ const golobalErrorHandlar: ErrorRequestHandler = (error, req, res, next) => {
     errorMessages,
     stack: config.env !== 'production' ? error?.stack : undefined,
   });
-
-  next();
 };
 
 export default golobalErrorHandlar;
