@@ -20,21 +20,25 @@ const golobalErrorHandlar: ErrorRequestHandler = (error, req, res) => {
   let errorMessages: IGenericErrorMessage[] = [];
 
   if (error?.name === 'ValidationError') {
+    // ValidationError
     const simplifiedError = handelValidationError(error);
     statusCode = simplifiedError?.statusCode;
     message = simplifiedError?.message;
     errorMessages = simplifiedError?.errorMessages;
   } else if (error?.name === 'CastError') {
+    // CastError
     const simplifiedError = handleCastError(error);
     statusCode = simplifiedError.statusCode;
     message = simplifiedError.message;
     errorMessages = simplifiedError.errorMessages;
   } else if (error instanceof ZodError) {
+    //ZodError
     const simplifiedError = handelZosError(error);
     statusCode = simplifiedError?.statusCode;
     message = simplifiedError?.message;
     errorMessages = simplifiedError?.errorMessages;
   } else if (error instanceof ApiError) {
+    //ApiError
     statusCode = error?.statusCode;
     message = error?.message;
     errorMessages = error?.message
@@ -46,6 +50,7 @@ const golobalErrorHandlar: ErrorRequestHandler = (error, req, res) => {
         ]
       : [];
   } else if (error instanceof Error) {
+    //Error
     message = error?.message;
     errorMessages = error?.message
       ? [
@@ -56,7 +61,6 @@ const golobalErrorHandlar: ErrorRequestHandler = (error, req, res) => {
         ]
       : [];
   }
-
   res.status(statusCode).json({
     success: false,
     message,
