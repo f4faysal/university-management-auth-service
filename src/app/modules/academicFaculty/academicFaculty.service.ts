@@ -4,8 +4,7 @@ import { AcademicFaculty } from './academicFaculty.model';
 const createFaculty = async (
   payload: IAcademicFaculty
 ): Promise<IAcademicFaculty> => {
-  // throw new ApiError(400, "ore baba error")
-
+  // throw new ApiError(400,)
   const result = await AcademicFaculty.create(payload);
   return result;
 };

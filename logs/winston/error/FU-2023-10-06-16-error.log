@@ -1,0 +1,13 @@
+Sat Jun 10 2023 16:39:56 [FU] error: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "user",
+      "role"
+    ],
+    "message": "role is required"
+  }
+]

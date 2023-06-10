@@ -1,5 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-unused-expressions */
+/* eslint-disable no-undef */
+/* eslint-disable  no-unused-vars */
 import { ErrorRequestHandler } from 'express';
 import { ZodError } from 'zod';
 import config from '../../config';
@@ -10,7 +12,7 @@ import handleCastError from '../../errors/handleCastError';
 import { IGenericErrorMessage } from '../../interfaces/error';
 import { errorlogger } from '../../share/logger';
 
-const golobalErrorHandlar: ErrorRequestHandler = (error, req, res) => {
+const golobalErrorHandlar: ErrorRequestHandler = (error, req, res, next) => {
   config.env === 'development'
     ? console.log('🛑 ☢️ ☣️ golobalErrorHandlar~', error)
     : errorlogger.error('🛑 ☢️ ☣️ golobalErrorHandlar ~', error);

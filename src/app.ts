@@ -29,7 +29,6 @@ app.use('/api/v1', routers);
 app.use(golobalErrorHandlar);
 
 // Handel not fount routs
-
 app.use((req: Request, res: Response, next: NextFunction) => {
   res.status(httpStatus.NOT_FOUND).json({
     success: false,
