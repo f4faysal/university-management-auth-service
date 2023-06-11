@@ -1,12 +1,21 @@
 import config from '../../../config';
 import ApiError from '../../../errors/ApiError';
+import { IAcademicSemester } from '../academicSemester/academicSemester.interface';
 import { IUser } from './user.interface';
 import { User } from './user.model';
-import { generateUserId } from './user.utils';
+import { generateStudentId } from './user.utils';
 
 const createUser = async (user: IUser): Promise<IUser | null> => {
+  const academicSemester: IAcademicSemester = {
+    title: 'Autumn',
+    year: '2025',
+    code: '01',
+    startMonth: 'May',
+    endMonth: 'September',
+  };
+
   // auto generated incremantal id
-  const id = await generateUserId();
+  const id = await generateStudentId(academicSemester);
   user.id = id;
   // default password
   if (!user.Password) {
