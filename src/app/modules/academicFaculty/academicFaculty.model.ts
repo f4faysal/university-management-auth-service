@@ -1,22 +1,52 @@
+// import { Schema, model } from 'mongoose';
+// import {
+//   AcademicFacultyModel,
+//   IAcademicFaculty,
+// } from './academicFaculty.interfaces';
+
+// const academicFacultySchema = new Schema<IAcademicFaculty>(
+//   {
+//     title: {
+//       type: String,
+//       required: true,
+//     },
+//   },
+//   {
+//     timestamps: true,
+//   }
+// );
+
+// export const AcademicFaculty = model<IAcademicFaculty, AcademicFacultyModel>(
+//   'AcademicFaculty',
+//   academicFacultySchema
+// );
+
 import { Schema, model } from 'mongoose';
 import {
   AcademicFacultyModel,
   IAcademicFaculty,
-} from './academicFaculty.interface';
+} from './academicFaculty.interfaces';
 
-const academicFacultySchema = new Schema<IAcademicFaculty>(
+const AcademicFacultySchema = new Schema<
+  IAcademicFaculty,
+  AcademicFacultyModel
+>(
   {
     title: {
       type: String,
       required: true,
+      unique: true,
     },
   },
   {
     timestamps: true,
+    toJSON: {
+      virtuals: true,
+    },
   }
 );
 
 export const AcademicFaculty = model<IAcademicFaculty, AcademicFacultyModel>(
   'AcademicFaculty',
-  academicFacultySchema
+  AcademicFacultySchema
 );

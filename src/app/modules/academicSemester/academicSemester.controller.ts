@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
 import httpStatus from 'http-status';
-import { paginationFields } from '../../../constants/paginatios';
-import catchAsync from '../../../share/catchAsync';
-import pick from '../../../share/pick';
+import { paginationFields } from '../../../constants/pagination';
+import catchAsync from '../../../shared/catchAsync';
+import pick from '../../../shared/pick';
 import {
   default as sendResponce,
   default as sendResponse,
-} from '../../../share/sendReponse';
+} from '../../../shared/sendResponse';
 import { academicSemesterFilterableFields } from './academicSemester.constant';
 import { IAcademicSemester } from './academicSemester.interface';
 import { AcademicSemesterService } from './academicSemester.service';

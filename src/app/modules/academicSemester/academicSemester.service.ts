@@ -1,10 +1,9 @@
 import httpStatus from 'http-status';
 import { SortOrder } from 'mongoose';
 import ApiError from '../../../errors/ApiError';
-import { IGenericResponce } from '../../../interfaces/common';
+import { paginationHelpers } from '../../../helpers/paginationHelper';
+import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
-import { PaginationHelpres } from '../../helpers/paginationsHelpers';
-
 import {
   academicSemesterSearchableFields,
   academicSemesterTitleCodeMapper,
@@ -29,7 +28,7 @@ const createSemester = async (
 const getAllSemesters = async (
   filters: IAcademicSemesterFilter,
   paginationOptions: IPaginationOptions
-): Promise<IGenericResponce<IAcademicSemester[]>> => {
+): Promise<IGenericResponse<IAcademicSemester[]>> => {
   const { searchTerm, ...filtersData } = filters;
   const andConditions = [];
 
@@ -78,7 +77,7 @@ const getAllSemesters = async (
   // ]
 
   const { page, limit, skip, sortBy, sortOrder } =
-    PaginationHelpres.calculatePagination(paginationOptions);
+    paginationHelpers.calculatePagination(paginationOptions);
 
   const sortConditions: { [key: string]: SortOrder } = {};
 
@@ -140,8 +139,8 @@ const deleteSemesters = async (
 
 export const AcademicSemesterService = {
   createSemester,
-  getAllSemesters,
   getSingleSemester,
+  getAllSemesters,
   updateSemester,
   deleteSemesters,
 };

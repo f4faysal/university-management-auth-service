@@ -10,7 +10,7 @@ import handelValidationError from '../../errors/handelValidationError';
 import handelZosError from '../../errors/handelZosError';
 import handleCastError from '../../errors/handleCastError';
 import { IGenericErrorMessage } from '../../interfaces/error';
-import { errorlogger } from '../../share/logger';
+import { errorlogger } from '../../shared/logger';
 
 const golobalErrorHandlar: ErrorRequestHandler = (error, req, res, next) => {
   config.env === 'development'

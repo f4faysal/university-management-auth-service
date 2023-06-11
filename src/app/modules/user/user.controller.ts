@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
-import catchAsync from '../../../share/catchAsync';
-import sendResponce from '../../../share/sendReponse';
+import catchAsync from '../../../shared/catchAsync';
+import sendResponce from '../../../shared/sendResponse';
 import { UserService } from './user.service';
 
 const createUser = catchAsync(

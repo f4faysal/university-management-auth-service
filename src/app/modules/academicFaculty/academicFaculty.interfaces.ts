@@ -6,6 +6,6 @@ export type IAcademicFaculty = {
 
 export type AcademicFacultyModel = Model<IAcademicFaculty>;
 
-export type IAcademicFacultyFilter = {
+export type IAcademicFacultyFilters = {
   searchTerm?: string;
 };
