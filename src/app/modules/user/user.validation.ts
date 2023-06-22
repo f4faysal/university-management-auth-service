@@ -246,7 +246,6 @@ const createFacultyZodSchema = z.object({
 const createAdminZodSchema = z.object({
   body: z.object({
     password: z.string().optional(),
-
     admin: z.object({
       name: z.object({
         firstName: z.string({
