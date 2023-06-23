@@ -48,7 +48,7 @@ const loginUser = async (paylod: ILoginUser): Promise<ILoginUserResponce> => {
     { expiresIn: config.jwt.refresh_expires_in }
   );
 
-  console.log(accessToken, refreshToken, needsPasswordChange);
+  // console.log(accessToken, refreshToken, needsPasswordChange);
 
   return {
     accessToken,

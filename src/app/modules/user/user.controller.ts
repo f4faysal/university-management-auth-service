@@ -1,49 +1,15 @@
-// import { NextFunction, Request, Response } from 'express';
-// import httpStatus from 'http-status';
-// import catchAsync from '../../../shared/catchAsync';
-// import sendResponce from '../../../shared/sendResponse';
-// import { UserService } from './user.service';
-
-// const createStudent = catchAsync(
-//   async (req: Request, res: Response, next: NextFunction) => {
-//     const { student, ...userData } = req.body;
-//     const result = await UserService.createStudent(student, userData);
-//     sendResponce(res, {
-//       statusCode: httpStatus.OK,
-//       success: true,
-//       message: 'Student created successfully !',
-//       data: result,
-//     });
-//     next();
-//   }
-// );
-// const createFaculty = catchAsync(
-//   async (req: Request, res: Response, next: NextFunction) => {
-//     const { faculty, ...userData } = req.body;
-//     const result = await UserService.createFaculty(faculty, userData);
-//     sendResponce(res, {
-//       statusCode: httpStatus.OK,
-//       success: true,
-//       message: 'Faculty created successfully !',
-//       data: result,
-//     });
-//     next();
-//   }
-// );
-
-// export const UserController = { createStudent, createFaculty };
-
 import { Request, Response } from 'express';
 import { RequestHandler } from 'express-serve-static-core';
 import httpStatus from 'http-status';
 import catchAsync from '../../../shared/catchAsync';
-
 import sendResponse from '../../../shared/sendResponse';
 import { IUser } from './user.interface';
 import { UserService } from './user.service';
 
 const createStudent: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
+    console.log(req.cookies, 'cookies');
+
     const { student, ...userData } = req.body;
     const result = await UserService.createStudent(student, userData);
 
