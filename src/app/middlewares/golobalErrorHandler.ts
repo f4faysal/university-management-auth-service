@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-undef */
 /* eslint-disable  no-unused-vars */
+/*typescript-eslint no-unused-vars*/
 import { ErrorRequestHandler } from 'express';
 import { ZodError } from 'zod';
 import config from '../../config';

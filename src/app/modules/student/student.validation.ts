@@ -1,15 +1,15 @@
 import { z } from 'zod';
 import { bloodGroup, gender } from '../student/student.constant';
-const studentUpdateZodSchema = z.object({
+
+const updateStudentZodSchema = z.object({
   body: z.object({
-    name: z
-      .object({
-        firstName: z.string().optional(),
-        middleName: z.string().optional(),
-        lastName: z.string().optional(),
-      })
-      .optional(),
+    name: z.object({
+      firstName: z.string().optional(),
+      lastName: z.string().optional(),
+      middleName: z.string().optional(),
+    }),
     gender: z.enum([...gender] as [string, ...string[]]).optional(),
+    dateOfBirth: z.string().optional(),
     email: z.string().email().optional(),
     contactNo: z.string().optional(),
     emergencyContactNo: z.string().optional(),
@@ -42,6 +42,6 @@ const studentUpdateZodSchema = z.object({
   }),
 });
 
-export const StudentValidation = {
-  studentUpdateZodSchema,
+export const StudentValidaion = {
+  updateStudentZodSchema,
 };

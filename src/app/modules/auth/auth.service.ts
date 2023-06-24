@@ -137,6 +137,7 @@ const refreshToken = async (token: string): Promise<IRefreshTokenResponse> => {
     accessToken: newAccessToken,
   };
 };
+
 // const refreshToken = async (token: string) => {
 
 //   // varify token - synchronous
