@@ -3,7 +3,7 @@ import httpStatus from 'http-status';
 import config from '../../../config';
 import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponse';
-import { ILoginUserResponce } from './auth.interface';
+import { ILoginUserResponse, IRefreshTokenResponse } from './auth.interface';
 import { AuthService } from './auth.service';
 
 const loginUser = catchAsync(async (req: Request, res: Response) => {
@@ -20,7 +20,7 @@ const loginUser = catchAsync(async (req: Request, res: Response) => {
 
   res.cookie('refreshToken', refreshToken, cookieOptions);
 
-  sendResponse<ILoginUserResponce>(res, {
+  sendResponse<ILoginUserResponse>(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'User login successfully !',
@@ -28,44 +28,29 @@ const loginUser = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-// const getSingleStudent = catchAsync(async (req: Request, res: Response) => {
-//   const id = req.params.id;
+const refreshToken = catchAsync(async (req: Request, res: Response) => {
+  const { refreshToken } = req.cookies;
 
-//   const result = await StudentService.getSingleStudent(id);
+  const result = await AuthService.refreshToken(refreshToken);
 
-//   sendResponce<IStudent>(res, {
-//     statusCode: httpStatus.OK,
-//     success: true,
-//     message: 'Get Single Student successfully !',
-//     data: result,
-//   });
-// });
+  // set refresh token into cookie
 
-// const updateSudent = catchAsync(async (req: Request, res: Response) => {
-//   const id = req.params.id;
-//   const updateData = req.body;
+  const cookieOptions = {
+    secure: config.env === 'production',
+    httpOnly: true,
+  };
 
-//   const result = await StudentService.updateSudent(id, updateData);
+  res.cookie('refreshToken', refreshToken, cookieOptions);
 
-//   sendResponce(res, {
-//     statusCode: httpStatus.OK,
-//     success: true,
-//     message: 'Update Student successfully !',
-//     data: result,
-//   });
-// });
-
-// const deleteStudent = catchAsync(async (req: Request, res: Response) => {
-//   const id = req.params.id;
-//   const result = await StudentService.deleteStudent(id);
-//   sendResponce<IStudent>(res, {
-//     statusCode: httpStatus.OK,
-//     success: true,
-//     message: 'Delete Student successfully !',
-//     data: result,
-//   });
-// });
+  sendResponse<IRefreshTokenResponse>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'User lohggedin successfully !',
+    data: result,
+  });
+});
 
 export const AuthController = {
   loginUser,
+  refreshToken,
 };
