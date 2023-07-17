@@ -22,7 +22,6 @@ const getAllAdmins = catchAsync(async (req: Request, res: Response) => {
     data: result.data,
   });
 });
-
 const getSingleAdmin = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
   const result = await AdminService.getSingleAdmin(id);
@@ -34,7 +33,6 @@ const getSingleAdmin = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
-
 const updateAdmin = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
   const updatedData = req.body;
