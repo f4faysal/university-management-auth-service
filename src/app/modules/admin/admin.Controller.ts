@@ -8,7 +8,7 @@ import { adminFilterableFields } from './admin.constant';
 import { IAdmin } from './admin.interface';
 import { AdminService } from './admin.service';
 
-const getAllAdmins = catchAsync(async (req: Request, res: Response) => {
+const getAllAdmins: any = catchAsync(async (req: Request, res: Response) => {
   const filters = pick(req.query, adminFilterableFields);
   const paginationOptions = pick(req.query, paginationFields);
 
