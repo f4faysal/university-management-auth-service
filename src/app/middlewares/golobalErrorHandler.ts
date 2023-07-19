@@ -13,6 +13,7 @@ import handleCastError from '../../errors/handleCastError';
 import { IGenericErrorMessage } from '../../interfaces/error';
 import { errorlogger } from '../../shared/logger';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const golobalErrorHandlar: ErrorRequestHandler = (error, req, res, next) => {
   config.env === 'development'
     ? console.log('🛑 ☢️ ☣️ golobalErrorHandlar~', error)
