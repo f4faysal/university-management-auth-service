@@ -9,7 +9,7 @@ This is the documentation for the Authentication Service component of the Univer
 1. `Clone the project:` Open your terminal or command prompt and run the following command to clone the project repository:
 
 ```bash
-git clone https://github.com/f4faysal/university-management-auth-service.git university-management-auth-service
+git clone https://github.com/f4faysal/university-management-auth-service.git
 ```
 
 2. `Navigate into the project directory:` Use the cd command to navigate into the project directory:
