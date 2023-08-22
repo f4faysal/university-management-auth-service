@@ -2,6 +2,28 @@
 
 This is the documentation for the Authentication Service component of the University Management System. The Authentication Service provides authentication and authorization functionalities for the three main roles in the system: Admin, Student, and Faculty. It is built using TypeScript, Express.js, Zod validation, and MongoDB.
 
+## Installation Steps
+
+### Follow these steps to clone and set up starter project:
+
+1. `Clone the project:` Open your terminal or command prompt and run the following command to clone the project repository:
+
+```bash
+git clone https://github.com/f4faysal/university-management-auth-service.git university-management-auth-service
+```
+
+2. `Navigate into the project directory:` Use the cd command to navigate into the project directory:
+
+```bash
+cd university-management-auth-service
+```
+
+3. `Install project dependencies:` Next, install the project dependencies by running the following command:
+
+```bash
+yarn install
+```
+
 ## Functional Requirements
 
 ### Student
@@ -97,8 +119,7 @@ This is the documentation for the Authentication Service component of the Univer
 
 Postman Documenttaion: [Click Here](https://documenter.getpostman.com/view/26682150/2s93zB72V9#acc25f08-de78-478b-809d-837ce239d2b3)
 
-Happy coding! 🚀
-
 ```
+Happy coding! 🚀
 
 ```
