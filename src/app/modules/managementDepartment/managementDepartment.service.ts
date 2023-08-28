@@ -2,34 +2,42 @@ import { SortOrder } from 'mongoose';
 import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
+import { managementDepartmentSearchableFields } from './managementDepartment.constant';
+
 import {
   IManagementDepartment,
   IManagementDepartmentFilters,
 } from './managementDepartment.interface';
 import { ManagementDepartment } from './managementDepartment.model';
 
-const createManagementDepartment = async (
+const createDepartment = async (
   payload: IManagementDepartment
 ): Promise<IManagementDepartment | null> => {
   const result = await ManagementDepartment.create(payload);
   return result;
 };
 
-const getAllManagementDepartments = async (
+const getSingleDepartment = async (
+  id: string
+): Promise<IManagementDepartment | null> => {
+  const result = await ManagementDepartment.findById(id);
+  return result;
+};
+
+const getAllDepartments = async (
   filters: IManagementDepartmentFilters,
   paginationOptions: IPaginationOptions
 ): Promise<IGenericResponse<IManagementDepartment[]>> => {
-  const academicFacultySearchableFields = ['title'];
-
+  // Extract searchTerm to implement search query
   const { searchTerm, ...filtersData } = filters;
   const { page, limit, skip, sortBy, sortOrder } =
     paginationHelpers.calculatePagination(paginationOptions);
 
   const andConditions = [];
-
+  // Search needs $or for searching in specified fields
   if (searchTerm) {
     andConditions.push({
-      $or: academicFacultySearchableFields.map(field => ({
+      $or: managementDepartmentSearchableFields.map(field => ({
         [field]: {
           $regex: searchTerm,
           $options: 'i',
@@ -37,7 +45,7 @@ const getAllManagementDepartments = async (
       })),
     });
   }
-
+  // Filters needs $and to fullfill all the conditions
   if (Object.keys(filtersData).length) {
     andConditions.push({
       $and: Object.entries(filtersData).map(([field, value]) => ({
@@ -46,8 +54,8 @@ const getAllManagementDepartments = async (
     });
   }
 
+  // Dynamic  Sort needs  field to  do sorting
   const sortConditions: { [key: string]: SortOrder } = {};
-
   if (sortBy && sortOrder) {
     sortConditions[sortBy] = sortOrder;
   }
@@ -71,14 +79,7 @@ const getAllManagementDepartments = async (
   };
 };
 
-const getSinglelManagementDepartment = async (
-  id: string
-): Promise<IManagementDepartment | null> => {
-  const result = await ManagementDepartment.findById(id);
-  return result;
-};
-
-const updateManagementDepartment = async (
+const updateDepartment = async (
   id: string,
   payload: Partial<IManagementDepartment>
 ): Promise<IManagementDepartment | null> => {
@@ -92,7 +93,7 @@ const updateManagementDepartment = async (
   return result;
 };
 
-const deleteManagementDepartment = async (
+const deleteDepartment = async (
   id: string
 ): Promise<IManagementDepartment | null> => {
   const result = await ManagementDepartment.findByIdAndDelete(id);
@@ -100,9 +101,9 @@ const deleteManagementDepartment = async (
 };
 
 export const ManagementDepartmentService = {
-  createManagementDepartment,
-  getAllManagementDepartments,
-  getSinglelManagementDepartment,
-  updateManagementDepartment,
-  deleteManagementDepartment,
+  createDepartment,
+  getAllDepartments,
+  getSingleDepartment,
+  updateDepartment,
+  deleteDepartment,
 };

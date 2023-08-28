@@ -3,7 +3,7 @@ import { z } from 'zod';
 const createManagementDepartmentZodSchema = z.object({
   body: z.object({
     title: z.string({
-      required_error: 'Titel is required',
+      required_error: 'Title is required',
     }),
   }),
 });
@@ -11,12 +11,12 @@ const createManagementDepartmentZodSchema = z.object({
 const updateManagementDepartmentZodSchema = z.object({
   body: z.object({
     title: z.string({
-      required_error: 'Titel is required',
+      required_error: 'Title is required',
     }),
   }),
 });
 
 export const ManagementDepartmentValidation = {
-  updateManagementDepartmentZodSchema,
   createManagementDepartmentZodSchema,
+  updateManagementDepartmentZodSchema,
 };

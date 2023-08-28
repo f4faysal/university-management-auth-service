@@ -4,67 +4,59 @@ import { paginationFields } from '../../../constants/pagination';
 import catchAsync from '../../../shared/catchAsync';
 import pick from '../../../shared/pick';
 import sendResponse from '../../../shared/sendResponse';
+import { managementDepartmentFilterableFields } from './managementDepartment.constant';
 import { IManagementDepartment } from './managementDepartment.interface';
 import { ManagementDepartmentService } from './managementDepartment.service';
 
-const createManagementDepartment = catchAsync(
-  async (req: Request, res: Response) => {
-    const { ...managementDepartmetData } = req.body;
-    const result = await ManagementDepartmentService.createManagementDepartment(
-      managementDepartmetData
-    );
-    sendResponse<IManagementDepartment>(res, {
-      statusCode: httpStatus.OK,
-      success: true,
-      message: 'Academic Faculty created successfully',
-      data: result,
-    });
-  }
-);
+const createDepartment = catchAsync(async (req: Request, res: Response) => {
+  const { ...departmentData } = req.body;
+  const result = await ManagementDepartmentService.createDepartment(
+    departmentData
+  );
 
-const getAllManagementDepartments = catchAsync(
-  async (req: Request, res: Response) => {
-    const academicFacultyFilterableFields = ['searchTerm', 'title'];
+  sendResponse<IManagementDepartment>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Management department created successfully',
+    data: result,
+  });
+});
 
-    const filters = pick(req.query, academicFacultyFilterableFields);
-    const paginationOptions = pick(req.query, paginationFields);
+const getAllDepartments = catchAsync(async (req: Request, res: Response) => {
+  const filters = pick(req.query, managementDepartmentFilterableFields);
+  const paginationOptions = pick(req.query, paginationFields);
 
-    const result =
-      await ManagementDepartmentService.getAllManagementDepartments(
-        filters,
-        paginationOptions
-      );
+  const result = await ManagementDepartmentService.getAllDepartments(
+    filters,
+    paginationOptions
+  );
 
-    sendResponse<IManagementDepartment[]>(res, {
-      statusCode: httpStatus.OK,
-      success: true,
-      message: 'Academic Faculties retrieved successfully',
-      meta: result.meta,
-      data: result.data,
-    });
-  }
-);
+  sendResponse<IManagementDepartment[]>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Management departments fetched successfully',
+    meta: result.meta,
+    data: result.data,
+  });
+});
 
-const getSinglelManagementDepartment = catchAsync(
-  async (req: Request, res: Response) => {
-    const { id } = req.params;
-    const result =
-      await ManagementDepartmentService.getSinglelManagementDepartment(id);
+const getSingleDepartment = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await ManagementDepartmentService.getSingleDepartment(id);
 
-    sendResponse<IManagementDepartment>(res, {
-      statusCode: httpStatus.OK,
-      success: true,
-      message: 'Academic Faculty fetched successfully',
-      data: result,
-    });
-  }
-);
+  sendResponse<IManagementDepartment>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Management department fetched successfully',
+    data: result,
+  });
+});
 
-const updateManagementDepartment = catchAsync(
+const updateDepartment = catchAsync(
   catchAsync(async (req: Request, res: Response) => {
     const { id } = req.params;
     const updatedData = req.body;
-    const result = await ManagementDepartmentService.updateManagementDepartment(
+    const result = await ManagementDepartmentService.updateDepartment(
       id,
       updatedData
     );
@@ -72,32 +64,28 @@ const updateManagementDepartment = catchAsync(
     sendResponse<IManagementDepartment>(res, {
       statusCode: httpStatus.OK,
       success: true,
-      message: 'Academic Faculty updated successfully',
+      message: 'Management department updated successfully',
       data: result,
     });
   })
 );
 
-const deleteManagementDepartment = catchAsync(
-  async (req: Request, res: Response) => {
-    const { id } = req.params;
-    const result = await ManagementDepartmentService.deleteManagementDepartment(
-      id
-    );
+const deleteDepartment = catchAsync(async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const result = await ManagementDepartmentService.deleteDepartment(id);
 
-    sendResponse<IManagementDepartment>(res, {
-      statusCode: httpStatus.OK,
-      success: true,
-      message: 'Academic Faculty deleted successfully',
-      data: result,
-    });
-  }
-);
+  sendResponse<IManagementDepartment>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Management department deleted successfully',
+    data: result,
+  });
+});
 
 export const ManagementDepartmentController = {
-  createManagementDepartment,
-  getAllManagementDepartments,
-  getSinglelManagementDepartment,
-  updateManagementDepartment,
-  deleteManagementDepartment,
+  createDepartment,
+  getAllDepartments,
+  getSingleDepartment,
+  updateDepartment,
+  deleteDepartment,
 };
