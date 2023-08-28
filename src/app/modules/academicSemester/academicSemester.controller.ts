@@ -55,7 +55,7 @@ const getSingleSemester = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-const updateSemesters = catchAsync(async (req: Request, res: Response) => {
+const updateSemester = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
   const updateData = req.body;
 
@@ -69,7 +69,7 @@ const updateSemesters = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-const deleteSemesters = catchAsync(async (req: Request, res: Response) => {
+const deleteSemester = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
   const result = await AcademicSemesterService.deleteSemesters(id);
   sendResponce<IAcademicSemester>(res, {
@@ -84,6 +84,6 @@ export const AcademicSemesterController = {
   createSemester,
   getAllSemesters,
   getSingleSemester,
-  updateSemesters,
-  deleteSemesters,
+  updateSemester,
+  deleteSemester,
 };
