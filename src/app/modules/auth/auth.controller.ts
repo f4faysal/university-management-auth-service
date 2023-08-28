@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+
 import config from '../../../config';
 import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponse';
