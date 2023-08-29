@@ -8,15 +8,13 @@ import { UserService } from './user.service';
 
 const createStudent: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
-    // console.log(req.cookies, 'cookies');
-
     const { student, ...userData } = req.body;
     const result = await UserService.createStudent(student, userData);
 
     sendResponse<IUser>(res, {
       statusCode: httpStatus.OK,
       success: true,
-      message: 'user created successfully!',
+      message: 'Student created successfully!',
       data: result,
     });
   }
@@ -30,7 +28,7 @@ const createFaculy: RequestHandler = catchAsync(
     sendResponse<IUser>(res, {
       statusCode: httpStatus.OK,
       success: true,
-      message: 'user created successfully!',
+      message: 'Faculty created successfully!',
       data: result,
     });
   }
