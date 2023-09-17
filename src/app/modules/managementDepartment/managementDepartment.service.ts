@@ -3,11 +3,10 @@ import { paginationHelpers } from '../../../helpers/paginationHelper';
 import { IGenericResponse } from '../../../interfaces/common';
 import { IPaginationOptions } from '../../../interfaces/pagination';
 import { managementDepartmentSearchableFields } from './managementDepartment.constant';
-
 import {
   IManagementDepartment,
   IManagementDepartmentFilters,
-} from './managementDepartment.interface';
+} from './managementDepartment.inerface';
 import { ManagementDepartment } from './managementDepartment.model';
 
 const createDepartment = async (

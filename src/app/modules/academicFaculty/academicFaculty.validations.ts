@@ -3,7 +3,7 @@ import { z } from 'zod';
 const createFacultyZodSchema = z.object({
   body: z.object({
     title: z.string({
-      required_error: 'Titel is required',
+      required_error: 'Title is required',
     }),
   }),
 });
@@ -11,7 +11,7 @@ const createFacultyZodSchema = z.object({
 const updatefacultyZodSchema = z.object({
   body: z.object({
     title: z.string({
-      required_error: 'Titel is required',
+      required_error: 'Title is required',
     }),
   }),
 });

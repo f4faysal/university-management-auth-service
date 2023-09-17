@@ -1,42 +1,42 @@
 import httpStatus from 'http-status';
 import { Schema, model } from 'mongoose';
-import {
-  academicSemesterCode,
-  academicSemesterMonths,
-  academicSemesterTitel,
-} from './academicSemester.constant';
-
 import ApiError from '../../../errors/ApiError';
 import {
-  AcademicSemesterModel,
-  IAcademicSemester,
-} from './academicSemester.interface';
+  academicSemesterCodes,
+  academicSemesterTitles,
+  acdemicSemesterMonths,
+} from './academicSemester.constant';
+import { IAcademicSemester } from './academicSemester.interface';
 
 const academicSemesterSchema = new Schema<IAcademicSemester>(
   {
     title: {
       type: String,
       required: true,
-      enum: academicSemesterTitel,
+      enum: academicSemesterTitles,
     },
     year: {
-      type: String,
+      type: Number,
       required: true,
     },
     code: {
       type: String,
       required: true,
-      enum: academicSemesterCode,
+      enum: academicSemesterCodes,
     },
     startMonth: {
       type: String,
       required: true,
-      enum: academicSemesterMonths,
+      enum: acdemicSemesterMonths,
     },
     endMonth: {
       type: String,
       required: true,
-      enum: academicSemesterMonths,
+      enum: acdemicSemesterMonths,
+    },
+    syncId: {
+      type: String,
+      required: true,
     },
   },
   {
@@ -47,23 +47,23 @@ const academicSemesterSchema = new Schema<IAcademicSemester>(
   }
 );
 
-//using hooks
 academicSemesterSchema.pre('save', async function (next) {
   const isExist = await AcademicSemester.findOne({
     title: this.title,
     year: this.year,
   });
+  // eslint-disable-next-line no-console
+  console.log(isExist);
   if (isExist) {
     throw new ApiError(
       httpStatus.CONFLICT,
-      'Academic Semester is already exist !'
+      'Academic semester is already exist !'
     );
   }
   next();
 });
 
-// 3. Create a Model.
-export const AcademicSemester = model<IAcademicSemester, AcademicSemesterModel>(
+export const AcademicSemester = model<IAcademicSemester>(
   'AcademicSemester',
   academicSemesterSchema
 );

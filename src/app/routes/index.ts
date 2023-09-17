@@ -1,14 +1,13 @@
 import express from 'express';
-
 import { AcademicDepartmentRoutes } from '../modules/academicDepartment/academicDepartment.routes';
 import { AcademicFacultyRoutes } from '../modules/academicFaculty/academicFaculty.route';
 import { AcademicSemesterRoutes } from '../modules/academicSemester/academicSemester.route';
+import { AdminRoutes } from '../modules/admin/admin.route';
+import { AuthRoutes } from '../modules/auth/auth.route';
 import { FacultyRoutes } from '../modules/faculty/faculty.route';
 import { ManagementDepartmentRoutes } from '../modules/managementDepartment/managementDepartment.route';
 import { StudentRoutes } from '../modules/student/student.route';
 import { UserRoutes } from '../modules/user/user.route';
-import { AdminRoutes } from '../modules/admin/admin.route';
-import { AuthRoutes } from '../modules/auth/auth.route';
 
 const router = express.Router();
 
@@ -50,9 +49,6 @@ const moduleRoutes = [
     route: AuthRoutes,
   },
 ];
+
 moduleRoutes.forEach(route => router.use(route.path, route.route));
-
-// router.use('/users', UserRoutes)
-// router.use('/academic-semester', SemesterRoutes);
-
 export default router;

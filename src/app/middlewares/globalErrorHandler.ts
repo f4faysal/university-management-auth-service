@@ -1,50 +1,50 @@
-/* eslint-disable no-console */
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-unused-expressions */
-/* eslint-disable no-undef */
-/* eslint-disable  no-unused-vars */
-/*typescript-eslint no-unused-vars*/
-import { ErrorRequestHandler } from 'express';
-import { ZodError } from 'zod';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
 import config from '../../config';
 import ApiError from '../../errors/ApiError';
-import handelValidationError from '../../errors/handelValidationError';
-import handelZosError from '../../errors/handelZosError';
+import handleValidationError from '../../errors/handelValidationError';
+
+import { ZodError } from 'zod';
+import handleZodError from '../../errors/handelZosError';
 import handleCastError from '../../errors/handleCastError';
 import { IGenericErrorMessage } from '../../interfaces/error';
 import { errorlogger } from '../../shared/logger';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const golobalErrorHandlar: ErrorRequestHandler = (error, req, res, next) => {
+const globalErrorHandler: ErrorRequestHandler = (
+  error,
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   config.env === 'development'
-    ? console.log('🛑 ☢️ ☣️ golobalErrorHandlar~', error)
-    : errorlogger.error('🛑 ☢️ ☣️ golobalErrorHandlar ~', error);
+    ? // eslint-disable-next-line no-console
+      console.log(`🐱‍🏍 globalErrorHandler ~~`, { error })
+    : errorlogger.error(`🐱‍🏍 globalErrorHandler ~~`, error);
 
   let statusCode = 500;
-  let message = '☢️ Somthing Wen Wrong !';
+  let message = 'Something went wrong !';
   let errorMessages: IGenericErrorMessage[] = [];
 
   if (error?.name === 'ValidationError') {
-    // ValidationError
-    const simplifiedError = handelValidationError(error);
-    statusCode = simplifiedError?.statusCode;
-    message = simplifiedError?.message;
-    errorMessages = simplifiedError?.errorMessages;
-  } else if (error?.name === 'CastError') {
-    // CastError
-    const simplifiedError = handleCastError(error);
+    const simplifiedError = handleValidationError(error);
     statusCode = simplifiedError.statusCode;
     message = simplifiedError.message;
     errorMessages = simplifiedError.errorMessages;
   } else if (error instanceof ZodError) {
-    //ZodError
-    const simplifiedError = handelZosError(error);
-    statusCode = simplifiedError?.statusCode;
-    message = simplifiedError?.message;
-    errorMessages = simplifiedError?.errorMessages;
+    const simplifiedError = handleZodError(error);
+    statusCode = simplifiedError.statusCode;
+    message = simplifiedError.message;
+    errorMessages = simplifiedError.errorMessages;
+  } else if (error?.name === 'CastError') {
+    const simplifiedError = handleCastError(error);
+    statusCode = simplifiedError.statusCode;
+    message = simplifiedError.message;
+    errorMessages = simplifiedError.errorMessages;
   } else if (error instanceof ApiError) {
-    //ApiError
     statusCode = error?.statusCode;
-    message = error?.message;
+    message = error.message;
     errorMessages = error?.message
       ? [
           {
@@ -54,7 +54,6 @@ const golobalErrorHandlar: ErrorRequestHandler = (error, req, res, next) => {
         ]
       : [];
   } else if (error instanceof Error) {
-    //Error
     message = error?.message;
     errorMessages = error?.message
       ? [
@@ -65,6 +64,7 @@ const golobalErrorHandlar: ErrorRequestHandler = (error, req, res, next) => {
         ]
       : [];
   }
+
   res.status(statusCode).json({
     success: false,
     message,
@@ -73,4 +73,4 @@ const golobalErrorHandlar: ErrorRequestHandler = (error, req, res, next) => {
   });
 };
 
-export default golobalErrorHandlar;
+export default globalErrorHandler;

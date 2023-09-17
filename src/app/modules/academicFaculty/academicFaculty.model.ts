@@ -1,26 +1,3 @@
-// import { Schema, model } from 'mongoose';
-// import {
-//   AcademicFacultyModel,
-//   IAcademicFaculty,
-// } from './academicFaculty.interfaces';
-
-// const academicFacultySchema = new Schema<IAcademicFaculty>(
-//   {
-//     title: {
-//       type: String,
-//       required: true,
-//     },
-//   },
-//   {
-//     timestamps: true,
-//   }
-// );
-
-// export const AcademicFaculty = model<IAcademicFaculty, AcademicFacultyModel>(
-//   'AcademicFaculty',
-//   academicFacultySchema
-// );
-
 import { Schema, model } from 'mongoose';
 import {
   AcademicFacultyModel,
@@ -35,6 +12,11 @@ const AcademicFacultySchema = new Schema<
     title: {
       type: String,
       required: true,
+      unique: true,
+    },
+    syncId: {
+      type: String,
+      required: false,
       unique: true,
     },
   },

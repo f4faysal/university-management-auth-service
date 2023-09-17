@@ -5,7 +5,7 @@ import validateRequest from '../../middlewares/validateRequest';
 import { ENUM_USER_ROLE } from '../../../enums/user';
 import auth from '../../middlewares/auth';
 import { AcademicSemesterController } from './academicSemester.controller';
-import { AcademicSemesterValidation } from './academicSemesteValidation';
+import { AcademicSemesterValidation } from './acdemicSemester.validation';
 const router = express.Router();
 
 router.post(
@@ -28,12 +28,12 @@ router.get(
 
 router.get(
   '/',
-  auth(
-    ENUM_USER_ROLE.SUPER_ADMIN,
-    ENUM_USER_ROLE.ADMIN,
-    ENUM_USER_ROLE.FACULTY,
-    ENUM_USER_ROLE.STUDENT
-  ),
+  // auth(
+  //   ENUM_USER_ROLE.SUPER_ADMIN,
+  //   ENUM_USER_ROLE.ADMIN,
+  //   ENUM_USER_ROLE.FACULTY,
+  //   ENUM_USER_ROLE.STUDENT
+  // ),
   AcademicSemesterController.getAllSemesters
 );
 
