@@ -1,11 +1,11 @@
 import initAcademicDepartmentEvents from '../modules/academicDepartment/academicDepartment.events';
 import initAcademicFacultyEvents from '../modules/academicFaculty/academicFaculty.events';
-import initAcademicSemesterEvents from '../modules/academicSemester/academicSemester.event';
+import initAcademicSemesterEvent from '../modules/academicSemester/academicSemester.event';
 
 const subscribeToEvents = () => {
-  initAcademicSemesterEvents();
-  initAcademicDepartmentEvents();
+  initAcademicSemesterEvent();
   initAcademicFacultyEvents();
+  initAcademicDepartmentEvents();
 };
 
 export default subscribeToEvents;
