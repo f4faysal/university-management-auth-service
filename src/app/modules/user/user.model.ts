@@ -67,8 +67,7 @@ UserSchema.statics.isPasswordMatched = async function (
 UserSchema.methods.changedPasswordAfterJwtIssued = function (
   jwtTimestamp: number
 ) {
-  // eslint-disable-next-line no-console
-  console.log({ jwtTimestamp }, '<---jwtTimestamp');
+  console.log({ jwtTimestamp }, 'hi');
 };
 
 // User.create() / user.save()

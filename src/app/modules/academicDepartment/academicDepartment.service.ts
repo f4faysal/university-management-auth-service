@@ -41,6 +41,8 @@ const getAllDepartments = async (
   // Extract searchTerm to implement search query
   const { searchTerm, ...filtersData } = filters;
 
+  console.log(filters);
+
   const andConditions = [];
 
   // Search needs $or for searching in specified fields
